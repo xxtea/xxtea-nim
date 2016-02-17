@@ -1,5 +1,5 @@
 [Package]
-name          = "xxtea"
+name          = "xxtea_nim"
 version       = "1.0.0"
 author        = "Ma Bingyao"
 description   = "XXTEA for encryption algorithm library Nim."
