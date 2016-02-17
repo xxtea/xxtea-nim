@@ -4,6 +4,8 @@
     <img src="https://avatars1.githubusercontent.com/u/6683159?v=3&s=86" alt="XXTEA logo" title="XXTEA" align="right" />
 </a>
 
+[![Build Status](https://travis-ci.org/xxtea/xxtea-nim.svg?branch=master)](https://travis-ci.org/xxtea/xxtea-nim)
+
 ## 简介
 
 XXTEA 是一个快速安全的加密算法。本项目是 XXTEA 加密算法的 Nim 实现。

@@ -4,6 +4,8 @@
     <img src="https://avatars1.githubusercontent.com/u/6683159?v=3&s=86" alt="XXTEA logo" title="XXTEA" align="right" />
 </a>
 
+[![Build Status](https://travis-ci.org/xxtea/xxtea-nim.svg?branch=master)](https://travis-ci.org/xxtea/xxtea-nim)
+
 ## Introduction
 
 XXTEA is a fast and secure encryption algorithm. This is a XXTEA library for Nim.
