@@ -21,7 +21,7 @@ nimble install https://github.com/xxtea/xxtea-nim.git
 ## 使用
 
 ```nim
-import xxtea;
+import xxtea
 
 const text = "Hello World! 你好，中国！"
 const key = "1234567890"
