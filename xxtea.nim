@@ -16,7 +16,7 @@ proc encrypt(v: var seq[uint32], k: seq[uint32]): seq[uint32] =
     while 0 < q:
         dec(q)
         sum = sum + DELTA
-        e = sum shr 2 and 3
+        e = (sum shr 2 and 3).int
         for p in countup(0, n - 1):
             y = v[p + 1]
             v[p] = v[p] + mx(sum, y, z, p, e, k)
@@ -34,7 +34,7 @@ proc decrypt(v: var seq[uint32], k: seq[uint32]): seq[uint32] =
     var sum = uint32(6 + 52 div v.xlen) * DELTA;
     var e: int
     while sum != 0:
-        e = sum shr 2 and 3
+        e = (sum shr 2 and 3).int
         for p in countdown(n, 1):
             z = v[p - 1]
             v[p] = v[p] - mx(sum, y, z, p, e, k)
