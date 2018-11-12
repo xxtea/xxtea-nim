@@ -68,7 +68,7 @@ proc toString(data: seq[uint32], includeLength: bool): string =
     if includeLength:
         var m = int(data[^1])
         n -= 4
-        if (m < n - 3) or (m > n): return nil
+        if (m < n - 3) or (m > n): raise newException(ValueError,"")
         n = m
     result = newString(n)
     for i in countup(0, n - 1):
@@ -77,15 +77,15 @@ proc toString(data: seq[uint32], includeLength: bool): string =
 proc encrypt*(data, key: string): string =
     ## encrypt data with key.
     ## return binary string encrypted data or nil on failure.
-    if data.len == 0: return nil
+    if data.len == 0: raise newException(ValueError, "could not encrypt, no data given")
     var v = toUint32Seq(data, true)
     var k = toUint32Seq(fixkey(key), false)
     return toString(encrypt(v, k), false)
 
 proc decrypt*(data, key: string): string =
     ## decrypt binary string encrypted data with key.
-    ## return decrypted string or nil on failure
-    if data.len == 0: return nil
+    ## return decrypted string raises exception on failure
+    if data.len == 0: raise newException(ValueError, "could not decrypt, no data given")
     var v = toUint32Seq(data, false)
     var k = toUint32Seq(fixkey(key), false)
     return toString(decrypt(v, k), true)
