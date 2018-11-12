@@ -6,12 +6,12 @@ proc mx(sum: uint32, y: uint32, z: uint32, p: int, e: int, k: openArray[uint32])
     result = (z shr 5 xor y shl 2) + (y shr 3 xor z shl 4) xor (sum xor y) + (k[p and 3 xor e] xor z)
 
 proc encrypt(v: var seq[uint32], k: seq[uint32]): seq[uint32] =
-    if v.xlen < 2: return v
-    var n = v.xlen - 1
+    if v.len < 2: return v
+    var n = v.len - 1
     var z = v[n]
     var sum = 0'u32
     var y: uint32
-    var q = 6 + 52 div v.xlen
+    var q = 6 + 52 div v.len
     var e: int
     while 0 < q:
         dec(q)
@@ -27,11 +27,11 @@ proc encrypt(v: var seq[uint32], k: seq[uint32]): seq[uint32] =
     return v
 
 proc decrypt(v: var seq[uint32], k: seq[uint32]): seq[uint32] =
-    if v.xlen < 2: return v
-    var n = v.xlen - 1
+    if v.len < 2: return v
+    var n = v.len - 1
     var z: uint32
     var y = v[0]
-    var sum = uint32(6 + 52 div v.xlen) * DELTA;
+    var sum = uint32(6 + 52 div v.len) * DELTA;
     var e: int
     while sum != 0:
         e = (sum shr 2 and 3).int
@@ -46,10 +46,10 @@ proc decrypt(v: var seq[uint32], k: seq[uint32]): seq[uint32] =
     return v
 
 proc fixkey(key: string): string =
-    if key.xlen == 16: return key
-    if key.xlen > 16: return key[0..16]
+    if key.len == 16: return key
+    if key.len > 16: return key[0..16]
     result = newString(16)
-    result[0 .. key.xlen - 1] = key
+    result[0 .. key.len - 1] = key
 
 proc toUint32Seq(data: string, includeLength: bool): seq[uint32] =
     var len = data.len
