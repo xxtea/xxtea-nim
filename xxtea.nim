@@ -68,7 +68,7 @@ proc toString(data: seq[uint32], includeLength: bool): string =
     if includeLength:
         var m = int(data[^1])
         n -= 4
-        assert false == (m < n - 3) or (m > n)
+        doAssert false == (m < n - 3) or (m > n)
         n = m
     result = newString(n)
     for i in countup(0, n - 1):
@@ -77,7 +77,7 @@ proc toString(data: seq[uint32], includeLength: bool): string =
 proc encrypt*(data, key: string): string =
     ## encrypt data with key.
     ## return binary string encrypted data or raises exception on failure.
-    assert data.len != 0
+    doAssert data.len != 0
     var v = toUint32Seq(data, true)
     var k = toUint32Seq(fixkey(key), false)
     return toString(encrypt(v, k), false)
@@ -85,7 +85,7 @@ proc encrypt*(data, key: string): string =
 proc decrypt*(data, key: string): string =
     ## decrypt binary string encrypted data with key.
     ## return decrypted string raises exception on failure
-    assert data.len != 0
+    doAssert data.len != 0
     var v = toUint32Seq(data, false)
     var k = toUint32Seq(fixkey(key), false)
     return toString(decrypt(v, k), true)
