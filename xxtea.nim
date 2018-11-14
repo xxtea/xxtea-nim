@@ -76,7 +76,7 @@ proc toString(data: seq[uint32], includeLength: bool): string =
 
 proc encrypt*(data, key: string): string =
     ## encrypt data with key.
-    ## return binary string encrypted data or raises exception on failure.
+    ## return binary string encrypted data or empty string on failure.
     if data.len == 0: return ""
     var v = toUint32Seq(data, true)
     var k = toUint32Seq(fixkey(key), false)
@@ -84,7 +84,7 @@ proc encrypt*(data, key: string): string =
 
 proc decrypt*(data, key: string): string =
     ## decrypt binary string encrypted data with key.
-    ## return decrypted string raises exception on failure
+    ## return decrypted string or empty string on failure
     if data.len == 0: return ""
     var v = toUint32Seq(data, false)
     var k = toUint32Seq(fixkey(key), false)
