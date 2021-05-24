@@ -47,7 +47,7 @@ proc decrypt(v: var seq[uint32], k: seq[uint32]): seq[uint32] =
 
 proc fixkey(key: string): string =
     if key.len == 16: return key
-    if key.len > 16: return key[0..16]
+    if key.len > 16: return key[0..15]
     result = newString(16)
     result[0 .. key.len - 1] = key
 
